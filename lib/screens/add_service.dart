@@ -20,6 +20,7 @@ class _AddServiceState extends State<AddService> {
   late String gender = "Masculin";
   late String heure_debut = "Heure début";
   late String heure_fin = "Heure fin";
+  late bool showProgess = false;
 
   @override
   Widget build(BuildContext context) {
@@ -246,11 +247,22 @@ class _AddServiceState extends State<AddService> {
                   backgroundColor: Colors.white,
                   onPress: () {
                     print('pressed');
+                    setState(() {
+                      showProgess = true;
+                    });
+                    print(showProgess);
                   },
-                  child: Text(
-                    'Enregister',
-                    style: GoogleFonts.poppins(),
-                  ),
+                  child: showProgess
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 1,
+                            color: Colors.black,
+                          ),
+                        )
+                      : Text(
+                          'Enregister',
+                          style: GoogleFonts.poppins(),
+                        ),
                 )
               ],
             ),
