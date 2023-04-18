@@ -25,6 +25,12 @@ class _AddServiceState extends State<AddService> {
   Widget build(BuildContext context) {
     late double width = MediaQuery.of(context).size.width;
     late double height = MediaQuery.of(context).size.height;
+    late TextEditingController _titleserviceController =
+        TextEditingController();
+    late TextEditingController _urlImageController = TextEditingController();
+    late TextEditingController _descriptionController = TextEditingController();
+    //late TextEditingController _sexeController = TextEditingController();
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -71,6 +77,7 @@ class _AddServiceState extends State<AddService> {
                   // height: height * .09,
                   backgroundColor: Color.fromARGB(255, 36, 34, 34),
                   hintText: 'Titre du service',
+                  textEditingController: _titleserviceController,
                   contentPadding: EdgeInsets.all(20),
                 ),
                 SizedBox(
@@ -81,6 +88,7 @@ class _AddServiceState extends State<AddService> {
                   // height: height * .09,
                   backgroundColor: Color.fromARGB(255, 36, 34, 34),
                   hintText: "URL de l'image",
+                  textEditingController: _urlImageController,
                   contentPadding: EdgeInsets.all(20),
                 ),
                 SizedBox(
@@ -91,6 +99,7 @@ class _AddServiceState extends State<AddService> {
                   // height: height * .09,
                   backgroundColor: Color.fromARGB(255, 36, 34, 34),
                   hintText: "Description",
+                  textEditingController: _descriptionController,
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 50),
                 ),
