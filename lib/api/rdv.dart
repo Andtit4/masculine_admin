@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:m_admin/api/service.dart';
+import 'package:m_admin/models/categorieModel.dart';
 import 'package:m_admin/models/global.dart';
 import 'package:m_admin/models/message.dart';
 import 'package:m_admin/models/rdv.dart';
@@ -11,6 +12,7 @@ class ApiRdv {
   List<Message> message = [];
   List<ServiceModel> service = [];
   List<GlobalNotifModel> global = [];
+  List<CategorieModel> categories = [];
   var nb = 0;
   initializeEndPoint(middlware, endpoint) async {
     // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
@@ -57,7 +59,7 @@ class ApiRdv {
     }
   }
 
-    insertnotif(telephoneuser, content) async {
+  insertnotif(telephoneuser, content) async {
     const middleware = "api/notif";
     var endpoint = "create";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
@@ -263,6 +265,103 @@ class ApiRdv {
       print('___MESSAGE_SEND____');
     } else {
       print('___ERROR __WHILE__SENDING____${response.statusCode}');
+    }
+  }
+
+// FUNCTION CONCERN SERVICE'S CATEGORIES
+
+  insertCategorie(
+      titre_categorie, img_categorie, description_categorie, sexe) async {
+    const middleware = "api/categorie";
+    var endpoint = "create";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.post(Uri.parse(apiUrl), body: {
+      'titre_categorie': titre_categorie.toString(),
+      'img_categorie': img_categorie.toString(),
+      'description_categorie': description_categorie.toString(),
+      'sexe': sexe.toString()
+    });
+
+    if (response.statusCode == 200) {
+      print('___MESSAGE_SEND____');
+    } else {
+      print('___ERROR __WHILE__CREATING_CATEGORY____${response.statusCode}');
+    }
+  }
+
+  getAllCategories() async {
+    const middleware = "api/categorie";
+    var endpoint = "";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      categories = (jsonData as List<dynamic>)
+          .map((json) => CategorieModel.fromJson(json))
+          .toList();
+      return categories;
+    } else {
+      print('___ERROR__GETTING_CATEGORIES__${response.statusCode}');
+    }
+  }
+
+  deleteCategorieById(id_categorie) async {
+    const middleware = "api/categorie";
+    var endpoint = "?id_categorie=$id_categorie";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.delete(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      print('___CATEGORIE_DELETE____');
+    } else {
+      print('___ERROR __WHILE__DELETING_CATEGORY____${response.statusCode}');
+    }
+  }
+
+  // concern table services
+
+  insertService(
+    title,
+    heure_debut,
+    heure_fin,
+    genre,
+    description,
+    img_url,
+    titre_categorie,
+    montant,
+  ) async {
+    const middleware = "api/service";
+    var endpoint = "create";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.post(Uri.parse(apiUrl), body: {
+      'title': title.toString(),
+      'heure_debut': heure_debut.toString(),
+      'heure_fin': heure_fin.toString(),
+      'genre': genre.toString(),
+      'description': description.toString(),
+      'img_url': img_url.toString(),
+      'titre_categorie': titre_categorie.toString(),
+      'montant': montant.toString()
+    });
+    if (response.statusCode == 200) {
+      print('___SERVICE_ADD_SUCCESS____');
+    } else {
+      print('___ERROR __WHILE__ADDING_SETRVICE_${response.statusCode}');
+    }
+  }
+
+  deleteServiceBy(id_service) async {
+    const middleware = "api/service";
+    var endpoint = "?id_service=$id_service";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.delete(Uri.parse(apiUrl));
+     if (response.statusCode == 200) {
+      print('___SERVICE_DELETE____');
+    } else {
+      print('___ERROR __WHILE__DELETING_SERVICE_${response.statusCode}');
     }
   }
 }

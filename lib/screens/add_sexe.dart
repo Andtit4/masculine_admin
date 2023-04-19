@@ -63,7 +63,7 @@ class _Step1State extends State<Step1> {
           ),
           GestureDetector(
             onTap: () {
-              Get.offAll(() => Step2(sexe: 'Féminin'),
+              Get.offAll(() => Step2(sexe: 'Masculin'),
                   transition: Transition.rightToLeft,
                   duration: Duration(seconds: 1));
             },
@@ -94,27 +94,34 @@ class _Step1State extends State<Step1> {
           SizedBox(
             height: heigth * .08,
           ),
-          Container(
-            width: double.infinity,
-            height: heigth * .2,
-            color: Color.fromARGB(255, 20, 20, 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  'Féminin',
-                  style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ))
-              ],
+          GestureDetector(
+            onTap: () {
+              Get.offAll(() => Step2(sexe: 'Féminin'),
+                  transition: Transition.rightToLeft,
+                  duration: Duration(seconds: 1));
+            },
+            child: Container(
+              width: double.infinity,
+              height: heigth * .2,
+              color: Color.fromARGB(255, 20, 20, 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Féminin',
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ))
+                ],
+              ),
             ),
           ),
           SizedBox(

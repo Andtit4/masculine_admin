@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_admin/api/rdv.dart';
 import 'package:m_admin/api/service.dart';
+import 'package:m_admin/partials/button.dart';
 import 'package:m_admin/screens/add_service.dart';
 import 'package:m_admin/screens/add_sexe.dart';
 // import 'package:m_admin/api/user.dart';
@@ -29,16 +30,37 @@ class _PlannifScreenState extends State<PlannifScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.off(() => const Step1(),
-              transition: Transition.rightToLeft,
-              duration: Duration(seconds: 1));
-        },
-        backgroundColor: Colors.white,
-        child: Icon(
-          Icons.add,
-          color: Colors.black,
+      floatingActionButton: SizedBox(
+        width: width * .3,
+        child: Stack(
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                Get.off(() => const Step1(),
+                    transition: Transition.rightToLeft,
+                    duration: Duration(seconds: 1));
+              },
+              backgroundColor: Colors.white,
+              child: Icon(
+                Icons.add,
+                color: Colors.black,
+              ),
+            ),
+            Positioned(
+                right: 10,
+                child: FloatingActionButton(
+                  backgroundColor: Colors.white,
+                  onPressed: () {
+                    Get.to(() => const AddService(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(seconds: 1));
+                  },
+                  child: Icon(
+                    Icons.document_scanner,
+                    color: Colors.black,
+                  ),
+                )),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -104,10 +126,35 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                       imageUrl: data[index].img_url!,
                                     ),
                                   ),
-                                  Text(
-                                    data[index].genre!,
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.white),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        data[index].genre!,
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          ApiRdv().deleteServiceBy(
+                                              data[index].id_service!);
+                                          showSnackBarText(
+                                              'Suppression effectuée avec succès');
+
+                                          setState(() {
+                                            data[index];
+                                          });
+                                        },
+                                        child: CustomButton(
+                                          width: width * .1,
+                                          height: height * .05,
+                                          backgroundColor: Colors.white,
+                                          child: Icon(Icons.delete),
+                                        ),
+                                      )
+                                    ],
                                   )
                                 ],
                               ),
@@ -174,5 +221,13 @@ class _PlannifScreenState extends State<PlannifScreen> {
         ),
       ),
     );
+  }
+
+  void showSnackBarText(String text) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+      text,
+      style: GoogleFonts.poppins(color: Colors.white),
+    )));
   }
 }

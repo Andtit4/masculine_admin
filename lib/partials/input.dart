@@ -9,6 +9,7 @@ class CustomInput extends StatelessWidget {
   late String? hintText;
   late Color? hintTextColor = Colors.white;
   late EdgeInsetsGeometry? contentPadding;
+  late bool readOnly ;
   CustomInput(
       {super.key,
       this.width,
@@ -16,6 +17,7 @@ class CustomInput extends StatelessWidget {
       this.textEditingController,
       this.backgroundColor,
       this.hintText,
+      required this.readOnly,
       this.contentPadding});
 
   @override
@@ -28,6 +30,7 @@ class CustomInput extends StatelessWidget {
         controller: textEditingController,
         style: GoogleFonts.poppins(color: hintTextColor),
         cursorColor: hintTextColor,
+        readOnly: readOnly,
         // cursorHeight: height,
         decoration: InputDecoration(
             filled: true,
