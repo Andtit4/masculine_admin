@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:m_admin/api/rdv.dart';
 import 'package:m_admin/api/service.dart';
 import 'package:m_admin/screens/add_service.dart';
+import 'package:m_admin/screens/add_sexe.dart';
 // import 'package:m_admin/api/user.dart';
 
 class PlannifScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
       backgroundColor: Colors.black,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.off(() => AddService(),
+          Get.off(() => const Step1(),
               transition: Transition.rightToLeft,
               duration: Duration(seconds: 1));
         },
