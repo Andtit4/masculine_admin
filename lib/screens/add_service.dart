@@ -31,6 +31,19 @@ class _AddServiceState extends State<AddService> {
   late TextEditingController _urlImageController = TextEditingController();
   late TextEditingController _descriptionController = TextEditingController();
   late TextEditingController _montantController = TextEditingController();
+  late String dayBeginOpen = 'Lundi';
+  late String dayEndOpen = 'Dimanche';
+  late bool selectBeginDayOpen = false;
+  late bool selectEndDayopen = false;
+  late List days = [
+    'Lundi',
+    'Mardi',
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi',
+    'Dimanche'
+  ];
   // final String sexe = "";
 
   /*  onInit() {
@@ -298,6 +311,142 @@ class _AddServiceState extends State<AddService> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'De',
+                        style: GoogleFonts.poppins(color: Colors.white),
+                      ),
+                      Column(
+                        children: [
+                          TiDropdown(
+                              firstItem: dayBeginOpen,
+                              onPress: () {
+                                setState(() {
+                                  selectBeginDayOpen = !selectBeginDayOpen;
+                                });
+                              },
+                              width: width * .25,
+                              height: height * .05,
+                              borderColor: Colors.transparent,
+                              color: Color.fromARGB(255, 34, 32, 32)),
+                          selectBeginDayOpen
+                              ? Container(
+                                  width: width * .25,
+                                  height: height * .08,
+                                  // color: Colors.amber,
+                                  child: SingleChildScrollView(
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    child: Column(
+                                        children: days
+                                            .map((e) => GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      dayBeginOpen = e;
+                                                      selectBeginDayOpen =
+                                                          false;
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    width: width * .25,
+                                                    height: height * .045,
+                                                    color: Colors.white,
+                                                    margin: EdgeInsets.only(
+                                                        bottom: 5),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        Text(
+                                                          e,
+                                                          style: GoogleFonts
+                                                              .poppins(),
+                                                        ),
+                                                        Icon(Icons.arrow_right)
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList()),
+                                  ),
+                                )
+                              : const SizedBox()
+                        ],
+                      ),
+                      Text(
+                        'A',
+                        style: GoogleFonts.poppins(color: Colors.white),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TiDropdown(
+                              firstItem: dayEndOpen,
+                              onPress: () {
+                                setState(() {
+                                  selectEndDayopen = !selectEndDayopen;
+                                });
+                              },
+                              width: width * .25,
+                              height: height * .05,
+                              borderColor: Colors.transparent,
+                              color: Color.fromARGB(255, 34, 32, 32)),
+                          selectEndDayopen
+                              ? Container(
+                                  width: width * .25,
+                                  height: height * .08,
+                                  // color: Colors.amber,
+                                  child: SingleChildScrollView(
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    child: Column(
+                                        children: days
+                                            .map((e) => GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      dayEndOpen = e;
+                                                      selectEndDayopen = false;
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    width: width * .25,
+                                                    height: height * .045,
+                                                    color: Colors.white,
+                                                    margin: EdgeInsets.only(
+                                                        bottom: 5),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        Text(
+                                                          e,
+                                                          style: GoogleFonts
+                                                              .poppins(),
+                                                        ),
+                                                        Icon(Icons.arrow_right)
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList()),
+                                  ),
+                                )
+                              : const SizedBox()
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
@@ -384,7 +533,8 @@ class _AddServiceState extends State<AddService> {
                         _urlImageController.text == '' ||
                         heure_debut == '' ||
                         heure_fin == '' ||
-                        titreCategorie == '') {
+                        titreCategorie == '' 
+                        ) {
                       showSnackBarText('Veuillez remplir tous les champs');
                     } else {
                       ApiRdv().insertService(
@@ -395,8 +545,12 @@ class _AddServiceState extends State<AddService> {
                           _descriptionController.text,
                           _urlImageController.text,
                           titreCategorie,
-                          _montantController.text);
-                      showSnackBarText('Service ${_titleserviceController.text} ajouté avec succès');
+                          _montantController.text,
+                          dayBeginOpen.toString(),
+                          dayEndOpen.toString()
+                          );
+                      showSnackBarText(
+                          'Service ${_titleserviceController.text} ajouté avec succès');
 
                       Get.offAll(() => BottomNavBar(),
                           transition: Transition.leftToRight,

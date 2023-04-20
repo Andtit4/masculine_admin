@@ -1,3 +1,4 @@
+// ignore: file_names
 class ServiceModel {
   late int? id_service;
   late String? title;
@@ -8,6 +9,8 @@ class ServiceModel {
   late String? img_url;
   late String? titre_categorie;
   late int? montant;
+  final String? day_begin;
+  final String? day_end;
 
   ServiceModel(
       {required this.description,
@@ -18,6 +21,10 @@ class ServiceModel {
       required this.img_url,
       required this.montant,
       required this.title,
+      required this.day_begin,
+      required this.day_end,
+    /*   required this.day_begin,
+      required this.day_end, */
       required this.titre_categorie});
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +37,10 @@ class ServiceModel {
         img_url: json['img_url'],
         montant: json['montant'],
         title: json['title'],
+        day_begin: json['day_begin'],
+        day_end: json['day_end'],
+        /* day_begin: json['day_begin'],
+        day_end: json['day_end'], */
         titre_categorie: json['titre_categorie']);
   }
 }

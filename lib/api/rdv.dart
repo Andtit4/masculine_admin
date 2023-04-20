@@ -332,6 +332,8 @@ class ApiRdv {
     img_url,
     titre_categorie,
     montant,
+    day_begin,
+    day_end,
   ) async {
     const middleware = "api/service";
     var endpoint = "create";
@@ -344,7 +346,9 @@ class ApiRdv {
       'description': description.toString(),
       'img_url': img_url.toString(),
       'titre_categorie': titre_categorie.toString(),
-      'montant': montant.toString()
+      'montant': montant.toString(),
+      'day_begin': day_begin.toString(),
+      'day_end': day_end.toString()
     });
     if (response.statusCode == 200) {
       print('___SERVICE_ADD_SUCCESS____');

@@ -186,6 +186,17 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                   )
                                 ],
                               ),
+                               Row(
+                                children: [
+                                  const Icon(Icons.timelapse,
+                                      color: Colors.white),
+                                  Text(
+                                    '  ${data[index].day_begin} à ${data[index].day_end}',
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 12, color: Colors.white),
+                                  )
+                                ],
+                              ),
                               Row(
                                 children: [
                                   const Icon(Icons.timelapse,
