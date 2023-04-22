@@ -223,13 +223,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           physics: BouncingScrollPhysics(),
                           itemCount: data.length,
                           itemBuilder: (context, index) {
-                            var date =
+                            /* var date =
                                 DateTime.tryParse(data[index].date_create!);
 
                             var time_start =
                                 DateTime.tryParse(data[index].date_debut!);
                             var time_go =
-                                DateTime.tryParse(data[index].date_fin!);
+                                DateTime.tryParse(data[index].date_fin!); */
 
                             return GestureDetector(
                               onTap: () {
@@ -306,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               color:
                                                                   Colors.white),
                                                           Text(
-                                                            '${date.day}/${date.month}/${date.year} de ${time_start.hour}:${time_start.minute} à ${time_go.hour}:${time_go.minute}',
+                                                            '${data[index].day}',
                                                             style: GoogleFonts
                                                                 .poppins(
                                                                     fontSize:
@@ -430,7 +430,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           Alert(
                                                               context: context,
                                                               desc:
-                                                                  'Voulez-vous supprimer votre demande du ${date.day}/${date.month}/${date.year} de ${time_start.hour}:${time_start.minute}:${time_start.second} à ${time_go.hour}:${time_go.minute}:${time_go.second}',
+                                                                  'Voulez-vous supprimer votre demande du ${data[index].date_create} programmé le ${data[index].day} pour ${data[index].date_debut} à ${data[index].date_fin}',
                                                               buttons: [
                                                                 DialogButton(
                                                                     width:
@@ -566,12 +566,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           children: [
                                             const Icon(Icons.calendar_month,
                                                 color: Colors.white),
-                                            Text(
+                                            /* Text(
                                               '${date!.day}/${date.month}/${date.year} de ${time_start!.hour}:${time_start.minute} à ${time_go!.hour}:${time_go.minute}',
                                               style: GoogleFonts.poppins(
                                                   fontSize: 12,
                                                   color: Colors.white),
-                                            )
+                                            ) */
                                           ],
                                         )
                                       ],

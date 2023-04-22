@@ -118,9 +118,9 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                 children: [
                                   Container(
                                     width: width * .4,
-                                    height: height * .1,
+                                    height: height * .08,
                                     clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         color: Colors.transparent),
                                     child: CachedNetworkImage(
                                       imageUrl: data[index].img_url!,

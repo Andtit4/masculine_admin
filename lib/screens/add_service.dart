@@ -413,7 +413,7 @@ class _AddServiceState extends State<AddService> {
                                                   },
                                                   child: Container(
                                                     width: width * .25,
-                                                    height: height * .045,
+                                                    height: height * .047,
                                                     color: Colors.white,
                                                     margin: EdgeInsets.only(
                                                         bottom: 5),

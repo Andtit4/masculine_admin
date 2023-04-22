@@ -11,6 +11,7 @@ class ServiceModel {
   late int? montant;
   final String? day_begin;
   final String? day_end;
+  final String? day;
 
   ServiceModel(
       {required this.description,
@@ -23,7 +24,9 @@ class ServiceModel {
       required this.title,
       required this.day_begin,
       required this.day_end,
-    /*   required this.day_begin,
+      required this.day,
+
+      /*   required this.day_begin,
       required this.day_end, */
       required this.titre_categorie});
 
@@ -41,6 +44,7 @@ class ServiceModel {
         day_end: json['day_end'],
         /* day_begin: json['day_begin'],
         day_end: json['day_end'], */
+        day: json['day'],
         titre_categorie: json['titre_categorie']);
   }
 }
