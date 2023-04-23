@@ -184,7 +184,7 @@ class _AddServiceState extends State<AddService> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            '${data[index].titre_categorie}',
+                                            '${data[index].titre_categorie} (${data[index].sexe})',
                                             style: GoogleFonts.poppins(
                                                 color: Colors.white),
                                           ),
