@@ -390,7 +390,7 @@ class _AddServiceState extends State<AddService> {
                                   selectEndDayopen = !selectEndDayopen;
                                 });
                               },
-                              width: width * .25,
+                              width: width * .27,
                               height: height * .05,
                               borderColor: Colors.transparent,
                               color: Color.fromARGB(255, 34, 32, 32)),
