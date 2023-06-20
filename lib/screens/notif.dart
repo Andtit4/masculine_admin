@@ -85,7 +85,8 @@ class _NotifScreenState extends State<NotifScreen>
                     controller: _notifTextController,
                     style: GoogleFonts.poppins(color: Colors.white),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 50),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 50, horizontal: 10),
                         filled: true,
                         hintText: 'Entrez le contenu',
                         hintStyle: GoogleFonts.poppins(color: Colors.white),
@@ -129,11 +130,14 @@ class _NotifScreenState extends State<NotifScreen>
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
+                height: height * .03,
+              ),
+              /*  Container(
                 width: width * .3,
                 height: 2,
                 color: Colors.white,
-              ),
+              ), */
               SizedBox(
                 width: width,
                 height: height * .6,
@@ -206,16 +210,19 @@ class _NotifScreenState extends State<NotifScreen>
                                   ],
                                 ),
                                 Container(
-                                  height: height * .05,
+                                  height: height * .09,
+                                  margin: EdgeInsets.only(top: 10),
                                   child: TextField(
                                     readOnly: false,
+
                                     // on
-                                    controller: _notifController,
+                                    // controller: _notifController,
                                     onChanged: (String value) {
-                                        notiftext = value;
+                                      notiftext = value;
                                       /* setState(() {
                                       }); */
-                                      print('\n\nnotiftext______${notiftext.toString()}');
+                                      print(
+                                          '\n\nnotiftext______${notiftext.toString()}');
                                     },
                                     style: GoogleFonts.poppins(
                                         color: Colors.white),
@@ -227,15 +234,14 @@ class _NotifScreenState extends State<NotifScreen>
                                         hintText: 'Envoyer une notification',
                                         hintStyle: GoogleFonts.poppins(
                                             color: Colors.white),
-                                        fillColor:
-                                            Color.fromARGB(255, 20, 20, 20),
+                                        fillColor: Color.fromARGB(255, 0, 0, 0),
                                         suffixIcon: IconButton(
                                           onPressed: () {
                                             ApiRdv().insertnotif(
                                                 data[index].telephoneuser,
                                                 notiftext);
                                             setState(() {
-                                              _notifController.text = "";
+                                              notiftext == "";
                                             });
 
                                             showSnackBarText(
@@ -249,7 +255,9 @@ class _NotifScreenState extends State<NotifScreen>
                                         enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide.none),
                                         focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide.none)),
+                                            borderSide: BorderSide(
+                                                color: Colors.white,
+                                                width: .8))),
                                   ),
                                 ),
                                 /*  Row(

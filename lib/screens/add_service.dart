@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+// import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -444,7 +444,7 @@ class _AddServiceState extends State<AddService> {
                 SizedBox(
                   height: 10,
                 ),
-                Padding(
+                /* Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -513,7 +513,7 @@ class _AddServiceState extends State<AddService> {
                       ),
                     ],
                   ),
-                ),
+                ), */
                 SizedBox(
                   height: height * .03,
                 ),

@@ -566,12 +566,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           children: [
                                             const Icon(Icons.calendar_month,
                                                 color: Colors.white),
-                                            /* Text(
-                                              '${date!.day}/${date.month}/${date.year} de ${time_start!.hour}:${time_start.minute} à ${time_go!.hour}:${time_go.minute}',
+                                            Text(
+                                              '${data[index].date_debut} de ${data[index].date_fin}',
                                               style: GoogleFonts.poppins(
                                                   fontSize: 12,
                                                   color: Colors.white),
-                                            ) */
+                                            )
                                           ],
                                         )
                                       ],

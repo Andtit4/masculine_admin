@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_admin/api/rdv.dart';
 import 'package:m_admin/api/service.dart';
+import 'package:m_admin/models/categorieModel.dart';
 import 'package:m_admin/partials/button.dart';
 import 'package:m_admin/screens/add_service.dart';
 import 'package:m_admin/screens/add_sexe.dart';
@@ -34,7 +35,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
         width: width * .3,
         child: Stack(
           children: [
-            FloatingActionButton(
+            /* FloatingActionButton(
               onPressed: () {
                 Get.off(() => const Step1(),
                     transition: Transition.rightToLeft,
@@ -59,7 +60,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
                     Icons.document_scanner,
                     color: Colors.black,
                   ),
-                )),
+                )), */
           ],
         ),
       ),
@@ -88,7 +89,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
               width: width,
               height: height * .7,
               child: FutureBuilder(
-                future: ApiRdv().getService(),
+                future: ApiRdv().getAllCategories(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (!snapshot.hasData) {
                     const CircularProgressIndicator(
@@ -97,7 +98,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
                     );
                   }
 
-                  List<ServiceModel> data = snapshot.data ?? [];
+                  List<CategorieModel> data = snapshot.data ?? [];
                   return ListView.builder(
                     itemCount: data.length,
                     physics: BouncingScrollPhysics(),
@@ -123,7 +124,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                     decoration: const BoxDecoration(
                                         color: Colors.transparent),
                                     child: CachedNetworkImage(
-                                      imageUrl: data[index].img_url!,
+                                      imageUrl: data[index].img_categorie!,
                                     ),
                                   ),
                                   Column(
@@ -132,14 +133,14 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        data[index].genre!,
+                                        data[index].sexe!,
                                         style: GoogleFonts.poppins(
                                             color: Colors.white),
                                       ),
                                       GestureDetector(
                                         onTap: () {
                                           ApiRdv().deleteServiceBy(
-                                              data[index].id_service!);
+                                              data[index].id_categorie!);
                                           showSnackBarText(
                                               'Suppression effectuée avec succès');
 
@@ -167,7 +168,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                       const Icon(Icons.history_edu_outlined,
                                           color: Colors.white),
                                       Text(
-                                        ' SERVICE-${data[index].id_service}',
+                                        ' SERVICE-${data[index].id_categorie}',
                                         style: GoogleFonts.poppins(
                                             color: Colors.white),
                                       )
@@ -180,13 +181,13 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                   const Icon(Icons.bookmark_border,
                                       color: Colors.white),
                                   Text(
-                                    '  ${data[index].title} ',
+                                    '  ${data[index].titre_categorie} ',
                                     style: GoogleFonts.poppins(
                                         fontSize: 12, color: Colors.white),
                                   )
                                 ],
                               ),
-                               Row(
+                              /*  Row(
                                 children: [
                                   const Icon(Icons.timelapse,
                                       color: Colors.white),
@@ -196,8 +197,8 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                         fontSize: 12, color: Colors.white),
                                   )
                                 ],
-                              ),
-                              Row(
+                              ), */
+                             /*  Row(
                                 children: [
                                   const Icon(Icons.timelapse,
                                       color: Colors.white),
@@ -207,7 +208,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                         fontSize: 12, color: Colors.white),
                                   )
                                 ],
-                              ),
+                              ), */
                               /*  Row(
                                       children: [
                                         const Icon(Icons.payment,

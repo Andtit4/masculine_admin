@@ -28,7 +28,7 @@ class CustomInput extends StatelessWidget {
       child: TextField(
         autocorrect: true,
         controller: textEditingController,
-        style: GoogleFonts.poppins(color: hintTextColor),
+        style: GoogleFonts.poppins(color: Colors.black),
         cursorColor: hintTextColor,
         readOnly: readOnly,
         // cursorHeight: height,

@@ -128,46 +128,43 @@ class _ChatScreenAdminState extends State<ChatScreenAdmin> {
                     },
                   ),
                 )),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    TiInput(
-                        color: Colors.black,
-                        hintText: 'Message',
-                        // height: height * .08,
-                        icon: '',
-                        hintColor: Colors.white,
-                        // border: Border.all(width: .1, color: Colors.white),
-                        inputController: _text,
-                        keyboardType: TextInputType.text,
-                        readonly: false,
-                        width: width * .7),
-                    GestureDetector(
-                      onTap: () {
-                        var admin = 'admin';
-                        ApiRdv().addMessage(sendTo, widget.telephoneuser,
-                            _text.text, admin, widget.data.id_rdv);
-
-                        setState(() {
-                          _text.text = "";
-                        });
-                      },
-                      child: Container(
-                        width: width * .15,
-                        height: height * .08,
-                        color: Colors.grey,
-                        child: Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TiInput(
+                      color: Colors.black,
+                      hintText: 'Message',
+                      // height: height * .08,
+                      icon: '',
+                      hintColor: Colors.white,
+                      // border: Border.all(width: .1, color: Colors.white),
+                      inputController: _text,
+                      keyboardType: TextInputType.text,
+                      readonly: false,
+                      width: width * .7),
+                  GestureDetector(
+                    onTap: () {
+                      var admin = 'admin';
+                      ApiRdv().addMessage(sendTo, widget.telephoneuser,
+                          _text.text, admin, widget.data.id_rdv);
+            
+                      setState(() {
+                        _text.text = "";
+                      });
+                    },
+                    child: Container(
+                      width: width * .15,
+                      height: height * .08,
+                      color: Colors.grey,
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.white,
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             )
           ],

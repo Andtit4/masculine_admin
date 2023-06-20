@@ -87,11 +87,17 @@ class _PlanifScreenState extends State<PlanifScreen> {
                                           )
                                         ],
                                       ),
-                                      Text(
-                                        data[index].status!,
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white),
-                                      )
+                                      data[index].status == 'Reçu'
+                                          ? Text(
+                                              data[index].status!,
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.green),
+                                            )
+                                          : Text(
+                                              data[index].status!,
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white),
+                                            )
                                     ],
                                   ),
                                   Row(

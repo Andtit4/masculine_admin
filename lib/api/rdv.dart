@@ -178,6 +178,29 @@ class ApiRdv {
     }
   }
 
+  getCategorie() async{
+    const middleware = "api/categorie";
+    var endpoint = "all";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      // print("___NUMBER__$telephoneuser");
+      print("ALL__GET__categories");
+      print("__DATA___$jsonData");
+      categories = (jsonData as List<dynamic>)
+          .map((json) => CategorieModel.fromJson(json))
+          .toList();
+
+      return categories;
+      // return jsonData;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
   getRecu() async {
     const middleware = "api/rdv";
     var endpoint = "recu";
