@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 width: 46,
                                 height: 36,
                                 child: Image.network(
-                                  'https://www.larousse.fr/encyclopedie/data/images/1009652-Drapeau_de_la_C%C3%B4te_dIvoire.jpg',
+                                  'https://d1z1c2g2uiorau.cloudfront.net/685-large_default/drapeau-mali-5075-cm.jpg',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 width: width * .03,
                               ),
                               Text(
-                                "Côte d'ivoire",
+                                "Mali",
                                 style: GoogleFonts.poppins(color: Colors.white),
                               ),
                             ],

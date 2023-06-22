@@ -6,7 +6,7 @@ class TiInput extends StatelessWidget {
   final double? height;
   final String hintText;
   final Color? hintColor;
-  late String inputValue;
+  late String? inputValue;
 
   late TextEditingController? inputController;
   final TextInputType keyboardType;
@@ -21,7 +21,7 @@ class TiInput extends StatelessWidget {
       required this.hintText,
       this.height,
       required this.icon,
-      // required this.inputValue,
+       this.inputValue,
       this.inputController,
       this.hintColor,
       this.border,

@@ -8,6 +8,7 @@ import 'package:m_admin/models/categorieModel.dart';
 import 'package:m_admin/partials/button.dart';
 import 'package:m_admin/screens/add_service.dart';
 import 'package:m_admin/screens/add_sexe.dart';
+import 'package:m_admin/screens/list_service.dart';
 // import 'package:m_admin/api/user.dart';
 
 class PlannifScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
   @override
   void initState() {
     super.initState();
-    ApiRdv().getService();
+    // ApiRdv().getService();
   }
 
   @override
@@ -32,10 +33,22 @@ class _PlannifScreenState extends State<PlannifScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       floatingActionButton: SizedBox(
-        width: width * .3,
-        child: Stack(
+          width: width * .3,
+          child: /* FloatingActionButton(
+            onPressed: () {
+              Get.off(() => const Step1(),
+                  transition: Transition.rightToLeft,
+                  duration: const Duration(seconds: 1));
+            },
+            backgroundColor: Colors.white,
+            child: const Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+          ) */
+          Stack(
           children: [
-            /* FloatingActionButton(
+            FloatingActionButton(
               onPressed: () {
                 Get.off(() => const Step1(),
                     transition: Transition.rightToLeft,
@@ -52,7 +65,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
                 child: FloatingActionButton(
                   backgroundColor: Colors.white,
                   onPressed: () {
-                    Get.to(() => const AddService(),
+                    Get.to(() => const ListService(),
                         transition: Transition.rightToLeft,
                         duration: Duration(seconds: 1));
                   },
@@ -60,10 +73,10 @@ class _PlannifScreenState extends State<PlannifScreen> {
                     Icons.document_scanner,
                     color: Colors.black,
                   ),
-                )), */
+                )),
           ],
         ),
-      ),
+          ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -73,7 +86,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
               height: height * .06,
             ),
             Text(
-              'Service\net planification ',
+              'Catégorie et service ',
               style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -137,23 +150,49 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                         style: GoogleFonts.poppins(
                                             color: Colors.white),
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          ApiRdv().deleteServiceBy(
-                                              data[index].id_categorie!);
-                                          showSnackBarText(
-                                              'Suppression effectuée avec succès');
+                                      Row(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              Get.offAll(() => AddService(), transition: Transition.leftToRight, duration: Duration(seconds: 1));
+                                              /* ApiRdv().deleteCategorieById(
+                                                  data[index].id_categorie!); */
+                                              /* showSnackBarText(
+                                                  'Suppression effectuée avec succès');
+ */
+                                              setState(() {
+                                                data[index];
+                                              });
+                                            },
+                                            child: CustomButton(
+                                              width: width * .1,
+                                              height: height * .05,
+                                              backgroundColor: Colors.white,
+                                              child: const Icon(Icons.add),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              ApiRdv().deleteCategorieById(
+                                                  data[index].id_categorie!);
+                                              showSnackBarText(
+                                                  'Suppression effectuée avec succès');
 
-                                          setState(() {
-                                            data[index];
-                                          });
-                                        },
-                                        child: CustomButton(
-                                          width: width * .1,
-                                          height: height * .05,
-                                          backgroundColor: Colors.white,
-                                          child: Icon(Icons.delete),
-                                        ),
+                                              setState(() {
+                                                data[index];
+                                              });
+                                            },
+                                            child: CustomButton(
+                                              width: width * .1,
+                                              height: height * .05,
+                                              backgroundColor: Colors.white,
+                                              child: Icon(Icons.delete),
+                                            ),
+                                          ),
+                                        ],
                                       )
                                     ],
                                   )
@@ -198,7 +237,7 @@ class _PlannifScreenState extends State<PlannifScreen> {
                                   )
                                 ],
                               ), */
-                             /*  Row(
+                              /*  Row(
                                 children: [
                                   const Icon(Icons.timelapse,
                                       color: Colors.white),

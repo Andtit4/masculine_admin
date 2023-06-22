@@ -1,14 +1,15 @@
 class ServiceModel {
   late int? id_service;
   late String? title;
-  late String? heure_debut;
-  late String? heure_fin;
+  late int? heure_debut;
+  late int? heure_fin;
   late String? genre;
   late String? img_url;
   late String? description;
+  late String? titre_categorie;
   late String? day_begin;
   late String? day_end;
-  late String? day;
+  late int? montant;
 
   ServiceModel(
       {required this.id_service,
@@ -19,7 +20,8 @@ class ServiceModel {
       required this.img_url,
       required this.day_begin,
       required this.day_end,
-      required this.day,
+      required this.montant,
+      required this.titre_categorie,
       required this.genre});
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
@@ -32,8 +34,8 @@ class ServiceModel {
         img_url: json['img_url'],
         day_begin: json['day_begin'],
         day_end: json['day_end'],
-        day: json["day"],
+        titre_categorie: json['titre_categorie'],
+        montant: json["montant"],
         genre: json['genre']);
-      
   }
 }

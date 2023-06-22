@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:m_admin/api/rdv.dart';
 import 'package:m_admin/api/service.dart';
 import 'package:m_admin/models/categorieModel.dart';
@@ -11,15 +9,15 @@ import 'package:m_admin/partials/button.dart';
 import 'package:m_admin/partials/dropdown.dart';
 import 'package:m_admin/partials/input.dart';
 
-class AddService extends StatefulWidget {
-  final Map<String, String>? data;
-  const AddService({super.key, this.data});
+class ViewService extends StatefulWidget {
+  final ServiceModel data;
+  const ViewService({super.key, required this.data});
 
   @override
-  State<AddService> createState() => _AddServiceState();
+  State<ViewService> createState() => _ViewServiceState();
 }
 
-class _AddServiceState extends State<AddService> {
+class _ViewServiceState extends State<ViewService> {
   late bool showItems = false;
   late String gender = "Masculin";
   late String heure_debut = "Heure début";
@@ -35,8 +33,6 @@ class _AddServiceState extends State<AddService> {
   late String dayEndOpen = 'Dimanche';
   late bool selectBeginDayOpen = false;
   late bool selectEndDayopen = false;
-  late String firstItem = 'Masculin';
-
     bool isMaleChecked = false;
   bool isFemaleChecked = false;
   late List days = [
@@ -48,20 +44,6 @@ class _AddServiceState extends State<AddService> {
     'Samedi',
     'Dimanche'
   ];
-  // final String sexe = "";
-
-  /*  onInit() {
-    setState(() {
-      sexe == widget.data?['sexe'];
-    });
-    print('_sexe_$sexe');
-  } */
-
-  @override
-  void initState() {
-    super.initState();
-    // onInit();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,15 +102,15 @@ class _AddServiceState extends State<AddService> {
                   // height: height * .09,
                   readOnly: false,
                   backgroundColor: Color.fromARGB(255, 36, 34, 34),
-                  
-                  hintText: 'Titre du service',
+
+                  hintText: widget.data.title,
                   textEditingController: _titleserviceController,
                   contentPadding: EdgeInsets.all(20),
                 ),
                 SizedBox(
                   height: height * .03,
                 ),
-                widget.data?['titre_categorie'] == null
+                widget.data.titre_categorie == null
                     ? TiDropdown(
                         firstItem: titreCategorie,
                         onPress: () {
@@ -141,7 +123,7 @@ class _AddServiceState extends State<AddService> {
                         borderColor: Colors.transparent,
                         color: Color.fromARGB(255, 36, 34, 34))
                     : Text(
-                        '${widget.data?['titre_categorie']}',
+                        '${widget.data.titre_categorie}',
                         style: GoogleFonts.poppins(color: Colors.white),
                       ),
                 showCategorie == true
@@ -216,7 +198,7 @@ class _AddServiceState extends State<AddService> {
                   // height: height * .09,
                   readOnly: false,
                   backgroundColor: Color.fromARGB(255, 36, 34, 34),
-                  hintText: "URL de l'image",
+                  hintText: widget.data.img_url,
                   textEditingController: _urlImageController,
                   contentPadding: EdgeInsets.all(20),
                 ),
@@ -228,7 +210,7 @@ class _AddServiceState extends State<AddService> {
                   // height: height * .09,
                   readOnly: false,
                   backgroundColor: Color.fromARGB(255, 36, 34, 34),
-                  hintText: "Description",
+                  hintText: widget.data.description,
                   textEditingController: _descriptionController,
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 50),
@@ -241,7 +223,7 @@ class _AddServiceState extends State<AddService> {
                   readOnly: false,
                   // height: height * .09,
                   backgroundColor: Color.fromARGB(255, 36, 34, 34),
-                  hintText: "Montant",
+                  hintText: widget.data.montant.toString(),
                   textEditingController: _montantController,
                   contentPadding: EdgeInsets.all(20),
                 ),
@@ -290,14 +272,14 @@ class _AddServiceState extends State<AddService> {
                 /* TiDropdown(
                   color: Color.fromARGB(255, 36, 34, 34),
                   borderColor: Colors.white,
-                  firstItem: widget.data?['sexe'] == null
+                  firstItem: widget.data.genre == null
                       ? gender
-                      : '${widget.data?['sexe'].toString()}',
+                      : '${widget.data.genre.toString()}',
                   height: height * .08,
                   width: double.infinity,
                   onPress: () {
                     // Vibration.vibrate(amplitude: 30, duration: 30);
-                    widget.data?['sexe'] == null
+                    widget.data.genre == null
                         ? setState(() {
                             showItems = !showItems;
                           })
@@ -365,7 +347,7 @@ class _AddServiceState extends State<AddService> {
                       Column(
                         children: [
                           TiDropdown(
-                              firstItem: dayBeginOpen,
+                              firstItem: widget.data.day_begin.toString(),
                               onPress: () {
                                 setState(() {
                                   selectBeginDayOpen = !selectBeginDayOpen;
@@ -428,7 +410,7 @@ class _AddServiceState extends State<AddService> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TiDropdown(
-                              firstItem: dayEndOpen,
+                              firstItem: widget.data.day_end.toString(),
                               onPress: () {
                                 setState(() {
                                   selectEndDayopen = !selectEndDayopen;
@@ -488,76 +470,6 @@ class _AddServiceState extends State<AddService> {
                 SizedBox(
                   height: 10,
                 ),
-                /* Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'De',
-                        style: GoogleFonts.poppins(color: Colors.white),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          DatePicker.showTimePicker(context,
-                              theme: DatePickerTheme(
-                                  backgroundColor: Colors.black,
-                                  itemStyle:
-                                      GoogleFonts.poppins(color: Colors.white)),
-                              onConfirm: (DateTime time) {
-                            setState(() {
-                              var time_convert =
-                                  "${DateTime.tryParse(time.hour.toString())} : ${DateTime.tryParse(time.minute.toString())} : ${DateTime.tryParse(time.second.toString())}";
-                              heure_debut = DateFormat('HH:mm:ss').format(time);
-                            });
-                            print(heure_debut);
-                          });
-                        },
-                        child: Container(
-                          width: width * .25,
-                          height: height * .05,
-                          color: Color.fromARGB(255, 34, 32, 32),
-                          child: Center(
-                            child: Text('$heure_debut',
-                                style:
-                                    GoogleFonts.poppins(color: Colors.white)),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'A',
-                        style: GoogleFonts.poppins(color: Colors.white),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          DatePicker.showTimePicker(context,
-                              theme: DatePickerTheme(
-                                  backgroundColor: Colors.black,
-                                  itemStyle:
-                                      GoogleFonts.poppins(color: Colors.white)),
-                              onConfirm: (DateTime time) {
-                            setState(() {
-                              var time_convert =
-                                  "${DateTime.tryParse(time.hour.toString())} : ${DateTime.tryParse(time.minute.toString())} : ${DateTime.tryParse(time.second.toString())}";
-                              heure_fin = DateFormat('HH:mm:ss').format(time);
-                            });
-                            print(heure_fin);
-                          });
-                        },
-                        child: Container(
-                          width: width * .25,
-                          height: height * .05,
-                          color: Color.fromARGB(255, 34, 32, 32),
-                          child: Center(
-                            child: Text('$heure_fin',
-                                style:
-                                    GoogleFonts.poppins(color: Colors.white)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ), */
                 SizedBox(
                   height: height * .03,
                 ),
@@ -567,11 +479,11 @@ class _AddServiceState extends State<AddService> {
                   backgroundColor: Colors.white,
                   onPress: () {
                     print('pressed');
-                    setState(() {
+                    /* setState(() {
                       showProgess = true;
-                    });
+                    }); */
 
-                    if (_descriptionController.text == '' ||
+                    /* if (_descriptionController.text == '' ||
                         _montantController.text == '' ||
                         _titleserviceController.text == '' ||
                         _urlImageController.text == '' ||
@@ -581,7 +493,7 @@ class _AddServiceState extends State<AddService> {
                         ) {
                       showSnackBarText('Veuillez remplir tous les champs');
                     } else {
-                      ApiRdv().insertService(
+                      /* ApiRdv().insertService(
                           _titleserviceController.text,
                           heure_debut,
                           heure_fin,
@@ -592,14 +504,14 @@ class _AddServiceState extends State<AddService> {
                           _montantController.text,
                           dayBeginOpen.toString(),
                           dayEndOpen.toString()
-                          );
-                      showSnackBarText(
-                          'Service ${_titleserviceController.text} ajouté avec succès');
+                          ); */
+                      /* showSnackBarText(
+                          'Service ${_titleserviceController.text} ajouté avec succès'); */
 
                       Get.offAll(() => BottomNavBar(),
                           transition: Transition.leftToRight,
                           duration: Duration(seconds: 1));
-                    }
+                    } */
                   },
                   child: showProgess
                       ? const Center(
@@ -609,7 +521,7 @@ class _AddServiceState extends State<AddService> {
                           ),
                         )
                       : Text(
-                          'Enregister',
+                          'Mettre à jour',
                           style: GoogleFonts.poppins(),
                         ),
                 )

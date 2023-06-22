@@ -47,7 +47,7 @@ class ApiRdv {
       var jsonData = json.decode(response.body);
       // print("___NUMBER__$telephoneuser");
       print("ALL___DATA___GET");
-      print("__DATA___${jsonData}");
+      // print("__DATA___${jsonData}");
       global = (jsonData as List<dynamic>)
           .map((json) => GlobalNotifModel.fromJson(json))
           .toList();
@@ -88,7 +88,7 @@ class ApiRdv {
       var jsonData = json.decode(response.body);
       // print("___NUMBER__$telephoneuser");
       print("ALL___DATA___GET");
-      print("__DATA___${jsonData}");
+      // print("__DATA___${jsonData}");
       rdv = (jsonData as List<dynamic>)
           .map((json) => RdvModel.fromJson(json))
           .toList();
@@ -143,7 +143,7 @@ class ApiRdv {
       var jsonData = json.decode(response.body);
       // print("___NUMBER__$telephoneuser");
       print("ALL___DATA___GET");
-      print("__DATA___${jsonData}");
+      // print("__DATA___${jsonData}");
       rdv = (jsonData as List<dynamic>)
           .map((json) => RdvModel.fromJson(json))
           .toList();
@@ -165,11 +165,12 @@ class ApiRdv {
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
       // print("___NUMBER__$telephoneuser");
-      print("ALL___DATA___GET");
-      print("__DATA___$jsonData");
       service = (jsonData as List<dynamic>)
           .map((json) => ServiceModel.fromJson(json))
           .toList();
+      print(service);
+      // print("__DATA___$jsonData");
+      print("get all services");
 
       return service;
       // return jsonData;
@@ -178,7 +179,7 @@ class ApiRdv {
     }
   }
 
-  getCategorie() async{
+  getCategorie() async {
     const middleware = "api/categorie";
     var endpoint = "all";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
@@ -189,7 +190,7 @@ class ApiRdv {
       var jsonData = json.decode(response.body);
       // print("___NUMBER__$telephoneuser");
       print("ALL__GET__categories");
-      print("__DATA___$jsonData");
+      // print("__DATA___$jsonData");
       categories = (jsonData as List<dynamic>)
           .map((json) => CategorieModel.fromJson(json))
           .toList();
@@ -212,7 +213,7 @@ class ApiRdv {
       var jsonData = json.decode(response.body);
       // print("___NUMBER__$telephoneuser");
       print("ALL___DATA___GET");
-      print("__DATA___${jsonData}");
+      // print("__DATA___${jsonData}");
       rdv = (jsonData as List<dynamic>)
           .map((json) => RdvModel.fromJson(json))
           .toList();
@@ -263,7 +264,7 @@ class ApiRdv {
       var jsonData = json.decode(response.body);
       // print("___NUMBER__$telephoneuser");
       print("___MESSAGE");
-      print("__DATA___${jsonData}");
+      // print("__DATA___${jsonData}");
       message = (jsonData as List<dynamic>)
           .map((json) => Message.fromJson(json))
           .toList();
@@ -307,9 +308,9 @@ class ApiRdv {
     });
 
     if (response.statusCode == 200) {
-      print('___MESSAGE_SEND____');
+      print('category added succefuly');
     } else {
-      print('___ERROR __WHILE__CREATING_CATEGORY____${response.statusCode}');
+      print('ERROR __WHILE__CREATING_CATEGORY____${response.statusCode}');
     }
   }
 
@@ -385,7 +386,7 @@ class ApiRdv {
     var endpoint = "?id_service=$id_service";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
     var response = await http.delete(Uri.parse(apiUrl));
-     if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
       print('___SERVICE_DELETE____');
     } else {
       print('___ERROR __WHILE__DELETING_SERVICE_${response.statusCode}');
