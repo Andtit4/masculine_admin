@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_admin/partials/bottom_nav_bar.dart';
@@ -62,10 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     print('teluser____$teluser');
-    return isShow == true
-        ? LoginScreen(cred: isShow)
-        : BottomNavBar(
-            telephoneuser: teluser,
-          );
+    return Scaffold(
+      body: isShow == true
+          ? LoginScreen(cred: isShow)
+          : BottomNavBar(
+              telephoneuser: teluser,
+            ),
+    );
   }
 }

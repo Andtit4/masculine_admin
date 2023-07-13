@@ -1,4 +1,4 @@
-package com.example.m_admin
+package com.komlatech.masculine_admin
 
 import io.flutter.embedding.android.FlutterActivity
 

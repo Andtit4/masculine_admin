@@ -43,10 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(15.0),
+          physics: BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,28 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(),
-                  /* GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        // otpControler.text = "";
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                        width: width * .2,
-                        height: height * .08,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: Colors.black)),
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                        )),
-                  ), */
-                  /*                  Text(
-                      "Service pour homme",
-                      style: GoogleFonts.poppins(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                    ), */
+               
                   SizedBox(),
                   Container(
                       width: width * .2,
@@ -101,19 +80,14 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: height * .02,
               ),
-              SizedBox(
-                width: width * .8,
-                child: Text(
-                  "Veuillez entrer le code de vérification",
-                  style: GoogleFonts.poppins(color: Colors.white),
-                ),
-              ),
-              SizedBox(
-                height: height * .02,
+              Text(
+                "Veuillez entrer le code de vérification",
+                style: GoogleFonts.poppins(color: Colors.white),
               ),
               Container(
                 width: width * .9,
                 height: height * .24,
+                margin: EdgeInsets.only(top: height * .02),
                 color: Color.fromARGB(94, 46, 46, 46),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -127,9 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           /*  Text(
-                            '+225',
-                            style: GoogleFonts.poppins(),
-                          ), */
+                              '+225',
+                              style: GoogleFonts.poppins(),
+                            ), */
 
                           Row(
                             children: [
@@ -207,7 +181,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-    ;
   }
 
   void showSnackBarText(String text) {
